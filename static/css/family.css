@@ -1,0 +1,818 @@
+/*
+ * Family Prayer — Common Worship Aesthetic, Child-Friendly
+ *
+ * Inherits the warmth of the prayer app (ivory, rubric red, endpaper purple)
+ * but softened for family use:
+ *
+ * - Larger body text (18px) for reading aloud
+ * - More generous line-height (1.85) for breath between lines
+ * - Ragged right (no justification) for natural reading rhythm
+ * - Rounded corners and softer borders (children's hands, not liturgical precision)
+ * - Clear visual distinction between child-text and adult-note
+ * - Activity and wonder sections are inviting, not solemn
+ *
+ * Font: Nunito (free humanist sans, available on all platforms)
+ *        with Gill Sans as graceful enhancement for Apple users.
+ * Screen target: phone (one parent holding, reading aloud)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* ============================== */
+/* Reset & Base                    */
+/* ============================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Ivory — the warm paper stock */
+    --f-ivory: #F5F0E8;
+    --f-surface: #EDE7DB;
+    --f-border: #D8D0C4;
+
+    /* Text */
+    --f-text: #2A2118;
+    --f-text-muted: #6B5D4F;
+    --f-text-dim: #9B8E7E;
+
+    /* Rubric red — the liturgical marker */
+    --f-rubric: #B03020;
+
+    /* Endpaper purple */
+    --f-purple: #2C1744;
+    --f-purple-light: #4A2D6E;
+
+    /* Gold accent */
+    --f-gold: #8B6914;
+
+    /* Network colours — softer than prayer app */
+    --f-water: #4A8FA8;
+    --f-soil: #6B8F4A;
+    --f-mineral: #C4873A;
+    --f-carbon: #7A6B8F;
+    --f-atmospheric: #6699AA;
+    --f-labor: #8F6B6B;
+
+    /* Wonder — a warm, hopeful accent */
+    --f-wonder-bg: #FDF8E8;
+    --f-wonder-border: #E8D88C;
+
+    /* Activity — inviting */
+    --f-activity-bg: #F0EDE4;
+    --f-activity-border: #C8BFA8;
+
+    /* Layout */
+    --f-max-width: 600px;
+}
+
+body {
+    font-family: 'Nunito', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: var(--f-ivory);
+    color: var(--f-text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    /* Full-bleed map uses 100vw; clip the scrollbar-width overflow it would otherwise cause */
+    overflow-x: hidden;
+}
+
+a { color: var(--f-gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============================== */
+/* Header                          */
+/* ============================== */
+
+.family-header {
+    background: var(--f-purple);
+    color: var(--f-ivory);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.family-header a { color: var(--f-ivory); }
+.header-home {
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    font-size: 15px;
+    opacity: 0.9;
+}
+.header-home:hover { opacity: 1; text-decoration: none; }
+.header-directory {
+    font-size: 13px;
+    opacity: 0.7;
+}
+.header-directory:hover { opacity: 1; }
+.header-place {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* ============================== */
+/* Main & Footer                   */
+/* ============================== */
+
+.family-main {
+    max-width: var(--f-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.family-footer {
+    background: var(--f-purple);
+    color: rgba(245, 240, 232, 0.5);
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 48px;
+    line-height: 1.8;
+}
+.family-footer a { color: rgba(245, 240, 232, 0.6); }
+
+/* ============================== */
+/* Landing Page                    */
+/* ============================== */
+
+.family-landing {
+    max-width: var(--f-max-width);
+    width: 100%;
+    padding: 32px 0;
+}
+
+.landing-welcome { margin-bottom: 28px; }
+
+.landing-welcome h1 {
+    font-size: 24px;
+    font-weight: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--f-purple);
+    line-height: 1.3;
+}
+
+.featured-link {
+    display: block;
+    color: var(--f-rubric);
+    font-style: italic;
+    font-size: 28px;
+    margin-top: 4px;
+}
+.featured-link:hover { text-decoration: underline; }
+
+.landing-date {
+    color: var(--f-rubric);
+    font-style: italic;
+    font-size: 14px;
+    margin: 8px 0 16px;
+}
+
+.landing-invitation {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--f-text);
+    opacity: 0.9;
+    max-width: 500px;
+}
+
+/* Arc — the flow of a family briefing */
+.family-arc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 24px 0 32px;
+    flex-wrap: wrap;
+}
+.arc-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--f-surface);
+    border: 1px solid var(--f-border);
+    border-radius: 6px;
+    min-width: 76px;
+}
+.arc-icon { font-size: 20px; line-height: 1; }
+.arc-label {
+    font-size: 11px;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--f-purple);
+    margin-top: 4px;
+}
+.arc-arrow { color: var(--f-text-dim); font-size: 14px; }
+
+/* Map */
+.landing-map {
+    margin: 0 0 28px;
+    text-align: center;
+}
+.world-map-img {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 6px;
+    border: 1px solid var(--f-border);
+}
+.map-hint {
+    font-size: 12px;
+    color: var(--f-text-dim);
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Landing list */
+.landing-list h2 {
+    font-size: 16px;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    color: var(--f-purple);
+    font-weight: normal;
+    margin-bottom: 16px;
+}
+
+.realm-group { margin-bottom: 20px; }
+.realm-heading {
+    font-size: 12px;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--f-purple-light);
+    font-weight: normal;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--f-border);
+    margin-bottom: 8px;
+}
+
+.place-card {
+    display: block;
+    background: var(--f-surface);
+    border: 1px solid var(--f-border);
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+    color: var(--f-text);
+    text-decoration: none;
+    transition: border-color 0.2s;
+}
+.place-card:hover { border-color: var(--f-purple); text-decoration: none; }
+.place-card-today { border-left: 3px solid var(--f-rubric); }
+
+.place-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.today-badge {
+    font-size: 10px;
+    font-variant: small-caps;
+    color: var(--f-rubric);
+    font-weight: 600;
+}
+.place-card-desc {
+    font-size: 13px;
+    color: var(--f-text-muted);
+    margin-top: 2px;
+    font-style: italic;
+}
+.place-card-meta {
+    font-size: 12px;
+    color: var(--f-text-dim);
+    margin-top: 4px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.realm-tag {
+    font-size: 11px;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--f-purple-light);
+    background: rgba(44, 23, 68, 0.06);
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+.network-tag {
+    font-size: 11px;
+    color: var(--f-text-muted);
+    background: var(--f-surface);
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--f-border);
+}
+.countries-tag { font-size: 12px; color: var(--f-text-dim); }
+
+.landing-empty {
+    padding: 40px 0;
+    color: var(--f-text-muted);
+    font-size: 16px;
+}
+
+.landing-about {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--f-border);
+}
+.landing-about h3 {
+    font-size: 14px;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    color: var(--f-purple);
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+.landing-about p {
+    font-size: 14px;
+    color: var(--f-text-muted);
+    line-height: 1.75;
+    margin-bottom: 10px;
+    max-width: 500px;
+}
+
+/* ============================== */
+/* Briefing — the family prayer    */
+/* ============================== */
+
+.family-briefing {
+    padding: 24px 0 40px;
+}
+
+.briefing-section {
+    margin-bottom: 28px;
+}
+
+.briefing-section h2 {
+    font-size: 16px;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    color: var(--f-purple);
+    font-weight: normal;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+/* ============================== */
+/* Details / Summary toggles       */
+/* ============================== */
+
+details.adult-note-toggle,
+details.collect-toggle {
+    margin-top: 12px;
+}
+
+details.adult-note-toggle > summary,
+details.collect-toggle > summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--f-text-muted);
+    list-style: none;
+    user-select: none;
+}
+
+details.adult-note-toggle > summary::-webkit-details-marker,
+details.collect-toggle > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.adult-note-toggle > summary::before {
+    content: "\25B8\00a0";
+    font-size: 11px;
+}
+details.adult-note-toggle[open] > summary::before {
+    content: "\25BE\00a0";
+}
+
+.collect-label {
+    color: var(--f-rubric);
+    font-style: italic;
+}
+
+/* ============================== */
+/* The Place                       */
+/* ============================== */
+
+.section-place {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.place-name {
+    font-size: 28px;
+    font-weight: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--f-purple);
+    margin-bottom: 4px;
+}
+
+.place-countries {
+    font-size: 14px;
+    color: var(--f-text-muted);
+    margin-bottom: 8px;
+}
+
+/* Full-bleed: break the map out of the narrow content column so it spans the viewport,
+   capped at 1100px and re-centered on wider desktop screens (translateX centers at any width) */
+.place-map {
+    margin: 16px 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 1100px;
+}
+.place-map img {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--f-border);
+}
+/* Invisible lat/long overlay layer: registers 1:1 with the map image (viewBox = PNG pixel dims) */
+.place-map .map-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+/* Cost-bearer anchors — the family site shows these (gentle "who · where"), always on */
+.anchors-layer { visibility: visible; }
+.map-anchor-dot { fill: #2a1808; stroke: #f5f0e8; stroke-width: 1.2; }
+.map-anchor-box { fill: #f5f0e8; fill-opacity: 0.94; stroke: #a09080; stroke-width: 1; }
+.map-anchor-label {
+    fill: #2a1808;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 500;
+    paint-order: stroke;
+    stroke: #f5f0e8;
+    stroke-width: 3;
+    stroke-linejoin: round;
+}
+
+.section-place .child-text {
+    text-align: left;
+    margin-top: 16px;
+}
+
+/* ============================== */
+/* Child text & Adult note         */
+/* ============================== */
+
+.child-text {
+    font-size: 17px;
+    line-height: 1.85;
+    text-align: left;
+}
+
+.child-text p {
+    margin-bottom: 12px;
+}
+
+.adult-note {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--f-text-muted);
+    border-left: 2px solid var(--f-border);
+    padding-left: 14px;
+    margin-top: 12px;
+}
+
+.adult-note p {
+    margin-bottom: 8px;
+}
+
+/* ============================== */
+/* Circuits                        */
+/* ============================== */
+
+.circuits {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.circuit-card {
+    background: var(--f-surface);
+    border-radius: 6px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--f-border);
+}
+
+.circuit-card.network-water  { border-left-color: var(--f-water); }
+.circuit-card.network-hydro  { border-left-color: var(--f-water); }
+.circuit-card.network-soil   { border-left-color: var(--f-soil); }
+.circuit-card.network-agri   { border-left-color: var(--f-soil); }
+.circuit-card.network-mineral { border-left-color: var(--f-mineral); }
+.circuit-card.network-carbon { border-left-color: var(--f-carbon); }
+.circuit-card.network-atmospheric { border-left-color: var(--f-atmospheric); }
+.circuit-card.network-labor  { border-left-color: var(--f-labor); }
+
+.circuit-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.circuit-sustains {
+    font-size: 14px;
+    color: var(--f-text-muted);
+    line-height: 1.6;
+}
+
+.circuit-people {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.participant {
+    font-size: 11px;
+    color: var(--f-text-dim);
+    background: rgba(0, 0, 0, 0.04);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+/* ============================== */
+/* What Is Happening               */
+/* ============================== */
+
+.section-happening .child-text {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* ============================== */
+/* Something Wonderful             */
+/* ============================== */
+
+.wonder-box {
+    background: var(--f-wonder-bg);
+    border: 1px solid var(--f-wonder-border);
+    border-radius: 8px;
+    padding: 16px 18px;
+}
+
+.wonder-box h3 {
+    font-size: 14px;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: var(--f-gold);
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+
+.wonder-box p {
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+/* ============================== */
+/* Activity                        */
+/* ============================== */
+
+.activity-card {
+    background: var(--f-activity-bg);
+    border: 1px solid var(--f-activity-border);
+    border-radius: 8px;
+    padding: 18px 20px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--f-purple);
+    margin-bottom: 10px;
+}
+
+.activity-materials {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--f-text-muted);
+}
+
+.activity-materials strong {
+    font-size: 13px;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+}
+
+.activity-materials ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+
+.activity-materials li {
+    margin-bottom: 2px;
+    line-height: 1.5;
+}
+
+.activity-card .adult-note {
+    margin-top: 14px;
+}
+
+/* ============================== */
+/* Prayer breath — visual silence  */
+/* ============================== */
+
+.prayer-breath {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--f-text-dim);
+}
+
+.breath-mark {
+    width: 120px;
+    height: 24px;
+}
+
+/* ============================== */
+/* Prayer                          */
+/* ============================== */
+
+.section-prayer h2 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.prayer-seed {
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--f-text-muted);
+    margin-bottom: 20px;
+}
+
+.responsive-prayers {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.prayer-pair {
+    margin-bottom: 16px;
+}
+
+.prayer-leader {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 4px;
+}
+
+.prayer-response {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-left: 20px;
+}
+
+.rubric {
+    color: var(--f-rubric);
+    font-style: italic;
+    font-size: 13px;
+    font-variant: small-caps;
+    letter-spacing: 0.03em;
+}
+
+/* ============================== */
+/* Psalm                           */
+/* ============================== */
+
+.section-psalm {
+    text-align: center;
+}
+
+.psalm-block {
+    margin-bottom: 10px;
+}
+
+.psalm-number {
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.psalm-title {
+    font-size: 14px;
+    color: var(--f-text-muted);
+    font-style: italic;
+}
+
+.psalm-verses {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--f-text);
+    border: none;
+    padding: 0 24px;
+    margin: 12px 0;
+    text-align: left;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+}
+
+.collect {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.congregation {
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* ============================== */
+/* Discussion question             */
+/* ============================== */
+
+.discussion-question {
+    font-size: 17px;
+    line-height: 1.8;
+    font-style: italic;
+    color: var(--f-text);
+    max-width: 480px;
+}
+
+/* ============================== */
+/* One Thing We Can Do             */
+/* ============================== */
+
+.action-box {
+    background: var(--f-surface);
+    border: 1px solid var(--f-border);
+    border-radius: 6px;
+    padding: 14px 16px;
+}
+
+.action-box p {
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+/* ============================== */
+/* Footer meta                     */
+/* ============================== */
+
+.briefing-meta-footer {
+    margin-top: 32px;
+    padding-top: 12px;
+    border-top: 1px solid var(--f-border);
+    font-size: 12px;
+    color: var(--f-text-dim);
+}
+
+/* ============================== */
+/* Not Found                       */
+/* ============================== */
+
+.not-found {
+    padding: 48px 0;
+    text-align: center;
+}
+
+.not-found h1 {
+    font-size: 20px;
+    font-weight: normal;
+    font-variant: small-caps;
+    color: var(--f-purple);
+    margin-bottom: 12px;
+}
+
+.not-found p {
+    font-size: 15px;
+    color: var(--f-text-muted);
+    margin-bottom: 8px;
+}
+
+/* ============================== */
+/* Responsive                      */
+/* ============================== */
+
+@media (max-width: 480px) {
+    .family-main { padding: 0 16px; }
+    .place-name { font-size: 24px; }
+    .child-text { font-size: 16px; }
+    .landing-welcome h1 { font-size: 20px; }
+    .featured-link { font-size: 24px; }
+    .family-arc { gap: 3px; }
+    .arc-step { min-width: 64px; padding: 8px 10px; }
+    .arc-icon { font-size: 18px; }
+    .arc-label { font-size: 10px; }
+    .psalm-verses { padding: 0 12px; font-size: 16px; }
+}
